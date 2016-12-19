@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="nz.co.udenbrothers.yoobie.RegisterOneFragment">
+
+    <ImageView
+        android:contentDescription="@string/imgDes"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/back_arrow" />
+
+    <TextView
+        android:id="@+id/SignUpText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_marginTopPercent="26%"
+        android:layout_centerHorizontal="true"
+        android:text="Sign Up"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:id="@+id/imgMailReg"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_marginStartPercent="5%"
+        app:layout_marginLeftPercent="5%"
+        app:layout_marginTopPercent="43%"
+        android:contentDescription="@string/imgDes"
+        android:src="@drawable/iconemail" />
+
+    <EditText
+        android:id="@+id/editRegMail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="10%"
+        app:layout_marginTopPercent="40%"
+        app:layout_widthPercent="90%"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="40dp"
+        android:paddingStart="40dp"
+        android:background="@null"
+        android:hint="Email address"
+        android:inputType="textEmailAddress"
+        android:textColor="#FFFF00"
+        android:textColorHint="#FFFFFF" />
+
+    <View
+        android:id="@+id/UnderLine2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_marginTopPercent="49%"
+        app:layout_widthPercent="90%"
+        android:layout_centerHorizontal="true"
+        android:background="#FFFFFF" />
+
+    <ImageView
+        android:id="@+id/imgMailPass"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_marginStartPercent="5%"
+        app:layout_marginLeftPercent="5%"
+        app:layout_marginTopPercent="52.6%"
+        android:contentDescription="@string/imgDes"
+        android:src="@drawable/iconpassword" />
+
+    <EditText
+        android:id="@+id/editRegPass"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="10%"
+        app:layout_marginTopPercent="50%"
+        app:layout_widthPercent="90%"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="40dp"
+        android:paddingStart="40dp"
+        android:background="@null"
+        android:hint="New Password"
+        android:inputType="textPassword"
+        android:textColor="#FFFF00"
+        android:textColorHint="#FFFFFF" />
+
+    <View
+        android:id="@+id/UnderLine3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_marginTopPercent="59%"
+        app:layout_widthPercent="90%"
+        android:layout_centerHorizontal="true"
+        android:background="#FFFFFF" />
+
+    <ImageView
+        android:id="@+id/imgMailPass2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_marginStartPercent="5%"
+        app:layout_marginLeftPercent="5%"
+        app:layout_marginTopPercent="62.6%"
+        android:contentDescription="@string/imgDes"
+        android:src="@drawable/iconpassword" />
+
+    <EditText
+        android:id="@+id/editRegPass2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="10%"
+        app:layout_marginTopPercent="60%"
+        app:layout_widthPercent="90%"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="40dp"
+        android:paddingStart="40dp"
+        android:background="@null"
+        android:hint="Varify Password"
+        android:inputType="textPassword"
+        android:textColor="#FFFF00"
+        android:textColorHint="#FFFFFF" />
+
+    <View
+        android:id="@+id/UnderLine4"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_marginTopPercent="69%"
+        app:layout_widthPercent="90%"
+        android:layout_centerHorizontal="true"
+        android:background="#FFFFFF" />
+
+    <CheckBox
+        android:id="@+id/termCond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_marginStartPercent="4%"
+        app:layout_marginLeftPercent="4%"
+        app:layout_marginTopPercent="72%"
+        android:textSize="15sp"
+        android:text="I agree to the Terms and Conditions"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/AccountButton"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:layout_centerHorizontal="true"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="90%"
+        app:layout_heightPercent="11%"
+        app:layout_marginTopPercent="86%"
+        android:background="@drawable/mybutton2"
+        android:text="CONTINUE"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:id="@+id/whitedots"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        app:layout_marginTopPercent="82%"
+        android:layout_centerHorizontal="true">
+
+        <View
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/white_dot" />
+
+        <View
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/grey_dot" />
+
+    </RelativeLayout>
+
+</android.support.percent.PercentRelativeLayout>
+

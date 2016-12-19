@@ -1,0 +1,55 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorControlActivated">@android:color/white</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:datePickerStyle" tools:ignore="NewApi">@android:style/Widget.DatePicker</item>
+    </style>
+
+    <style name="AppTwoTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorControlActivated">@android:color/black</item>
+        <item name="colorControlNormal">@android:color/black</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="TutorialTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="PopupAnimation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/activity_slide_up</item>
+        <item name="android:windowExitAnimation">@anim/activity_slide_down</item>
+    </style>
+
+    <style name="FloatTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="PopTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowAnimationStyle">@style/PopupAnimation</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowCloseOnTouchOutside" tools:targetApi="honeycomb">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+</resources>

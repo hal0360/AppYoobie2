@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="nz.co.udenbrothers.yoobie.ControlFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="ANIMATION"
+        android:textColor="#000000"
+        android:id="@+id/textView4"
+        app:layout_marginTopPercent="7%"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:layout_width="290dp"
+        android:id="@+id/radioGroupAnimation"
+        android:layout_height="wrap_content"
+        app:layout_marginTopPercent="15%"
+        android:layout_centerHorizontal="true">
+
+        <RadioButton
+            android:id="@+id/radioButtonSlide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:buttonTint="#000000"
+            android:textSize="12sp"
+            android:drawableTop="?android:attr/listChoiceIndicatorSingle"
+            android:textColor="#000000"
+            android:gravity="center_horizontal|top"
+            android:text="Slide in" />
+
+        <RadioButton
+            android:id="@+id/radioButtonZoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#000000"
+            android:textColor="#000000"
+            android:button="@null"
+            android:textSize="12sp"
+            android:drawableTop="?android:attr/listChoiceIndicatorSingle"
+            android:gravity="center_horizontal|top"
+            android:text="Zoom in"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <RadioButton
+            android:id="@+id/radioButtonFade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:buttonTint="#000000"
+            android:textSize="12sp"
+            android:drawableTop="?android:attr/listChoiceIndicatorSingle"
+            android:gravity="center_horizontal|top"
+            android:text="Fade in"
+            android:textColor="#000000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <!--
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="DURATION"
+        android:textColor="#FFFFFF"
+        android:id="@+id/textView5"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="25%" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#FFFFFF"
+        android:text="(Seconds)"
+        android:id="@+id/textView6"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="29%"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#FFFFFF"
+        android:text="2                                     3                                     4"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="33%"/>
+
+    <SeekBar
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:minHeight="10dip"
+        android:maxHeight="10dip"
+        android:id="@+id/seekControlBar"
+        android:progressDrawable="@drawable/seek_track"
+        android:thumb="@drawable/seek_thumb"
+        android:progress="50"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="37%" />
+
+    -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="PLACEMENT"
+        android:textColor="#000000"
+        android:id="@+id/textView7"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="33%" />
+
+    <RelativeLayout
+        android:layout_width="220dp"
+        android:id="@+id/radioGroupTiming"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="41%">
+
+        <RadioButton
+            android:id="@+id/radioButtonBefore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:textSize="12sp"
+            android:buttonTint="#000000"
+            android:drawableTop="?android:attr/listChoiceIndicatorSingle"
+            android:textColor="#000000"
+            android:gravity="center_horizontal|top"
+            android:text="Lock Screen" />
+
+        <RadioButton
+            android:id="@+id/radioButtonAfter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:textSize="12sp"
+            android:buttonTint="#000000"
+            android:drawableTop="?android:attr/listChoiceIndicatorSingle"
+            android:gravity="center_horizontal|top"
+            android:text="After Lock Screen"
+            android:textColor="#000000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="DOWNLOAD OVER WIFI ONLY"
+        android:textColor="#000000"
+        android:id="@+id/textView12"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="60%" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:buttonTint="#000000"
+        android:id="@+id/checkBoxWifi"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="67%" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="90%"
+        app:layout_heightPercent="13%"
+        app:layout_marginTopPercent="84%"
+        android:textSize="35sp"
+        android:text="LOGOUT"
+        android:textColor="#ffffff"
+        android:background="@drawable/logout_button"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:id="@+id/logoutButton"
+        android:layout_centerHorizontal="true" />
+
+</android.support.percent.PercentRelativeLayout>

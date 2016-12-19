@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="nz.co.udenbrothers.yoobie.StarupFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textColor="#000000"
+        android:text="Yoobie"
+        android:textStyle="bold"
+        android:id="@+id/YoobieText"
+        app:layout_marginTopPercent="26%"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="20%"
+        app:layout_heightPercent="12%"
+        app:layout_marginTopPercent="45%"
+        app:layout_marginStartPercent="5%"
+        app:layout_marginLeftPercent="5%"
+        android:textSize="32sp"
+        android:elevation="15dp"
+        android:text="00"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/countdown_border"
+        android:gravity="center"
+        android:id="@+id/txtTimerDay" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="20%"
+        app:layout_heightPercent="12%"
+        app:layout_marginTopPercent="45%"
+        app:layout_marginStartPercent="28.2%"
+        app:layout_marginLeftPercent="28.2%"
+        android:elevation="15dp"
+        android:textSize="32sp"
+        android:text="00"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/countdown_border"
+        android:gravity="center"
+        android:id="@+id/txtTimerHour" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="20%"
+        app:layout_heightPercent="12%"
+        app:layout_marginTopPercent="45%"
+        app:layout_marginStartPercent="51.4%"
+        app:layout_marginLeftPercent="51.4%"
+        android:elevation="15dp"
+        android:textSize="32sp"
+        android:text="000"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/countdown_border"
+        android:gravity="center"
+        android:id="@+id/txtTimerMinute" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="20%"
+        app:layout_heightPercent="12%"
+        app:layout_marginTopPercent="45%"
+        app:layout_marginStartPercent="74.6%"
+        app:layout_marginLeftPercent="74.6%"
+        android:elevation="15dp"
+        android:textSize="32sp"
+        android:text="00"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/countdown_border"
+        android:gravity="center"
+        android:id="@+id/txtTimerSecond" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Already have an account? Sign in"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:id="@+id/loginText"
+        app:layout_marginTopPercent="64%"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="90%"
+        app:layout_heightPercent="11%"
+        app:layout_marginTopPercent="74%"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/emailJoinButton"
+        android:background="@drawable/mybutton2">
+
+        <ImageView
+            android:contentDescription="@string/imgDes"
+            android:layout_height="30dp"
+            android:layout_width="30dp"
+            android:src="@drawable/iconemail"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:id="@+id/imageViewio" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="SIGN IN WITH E-MAIL"
+            android:id="@+id/textView13bn"
+            android:textColor="#FFFFFF"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageViewio"
+            android:layout_toEndOf="@+id/imageViewio"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="90%"
+        app:layout_heightPercent="11%"
+        app:layout_marginTopPercent="86%"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/facebookButton"
+        android:background="@drawable/mybutton">
+
+        <ImageView
+            android:contentDescription="@string/imgDes"
+            android:layout_height="30dp"
+            android:layout_width="30dp"
+            android:src="@drawable/icon_facebook"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:id="@+id/imageViewtt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="SIGN IN WITH FACEBOOK"
+            android:id="@+id/textView13e"
+            android:textColor="#FFFFFF"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageViewtt"
+            android:layout_toEndOf="@+id/imageViewtt"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+    </RelativeLayout>
+
+</android.support.percent.PercentRelativeLayout>

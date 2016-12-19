@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="nz.co.udenbrothers.yoobie.ProfileFragment">
+
+        <ImageView
+            android:contentDescription="@string/imgDes"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_widthPercent="32%"
+            app:layout_heightPercent="24%"
+            android:scaleType="fitXY"
+            android:id="@+id/imgProfile"
+            android:src="@drawable/avatar1"
+            app:layout_marginTopPercent="4%"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Not Avaliable"
+            android:textColor="#000000"
+            android:ellipsize="end"
+            android:lines="1"
+            android:id="@+id/profileNameTxt"
+            app:layout_marginTopPercent="29%"
+            android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Not Avaliable"
+        android:id="@+id/EntryTxt"
+        android:textColor="#000000"
+        android:ellipsize="end"
+        android:lines="1"
+        app:layout_marginTopPercent="34%"
+        android:layout_centerHorizontal="true" />
+
+
+    <ImageView
+        android:contentDescription="@string/imgDes"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/imgMailPro"
+        android:src="@drawable/iconemail"
+        app:layout_marginTopPercent="50%"
+        app:layout_marginStartPercent="10%"
+        app:layout_marginLeftPercent="10%" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="atromoby@gmail.com"
+        android:ellipsize="end"
+        android:lines="1"
+        android:id="@+id/profileEmailTxt"
+        android:textColor="#FFFFFF"
+        app:layout_marginTopPercent="50.5%"
+        app:layout_marginStartPercent="22%"
+        app:layout_marginLeftPercent="22%" />
+
+    <ImageView
+        android:contentDescription="@string/imgDes"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/imgPhonePro"
+        android:src="@drawable/iconphone"
+        app:layout_marginTopPercent="59%"
+        app:layout_marginStartPercent="10%"
+        app:layout_marginLeftPercent="10%" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:ellipsize="end"
+        android:lines="1"
+        android:id="@+id/profileMobileTxt"
+        android:textColor="#FFFFFF"
+        app:layout_marginTopPercent="59.5%"
+        app:layout_marginStartPercent="22%"
+        app:layout_marginLeftPercent="22%"  />
+
+    <ImageView
+        android:contentDescription="@string/imgDes"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/imgLocPro"
+        android:src="@drawable/iconlocation"
+        app:layout_marginTopPercent="68%"
+        app:layout_marginStartPercent="10%"
+        app:layout_marginLeftPercent="10%" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Christchurch, New Zealand"
+        android:id="@+id/profileLocationTxt"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textColor="#FFFFFF"
+        app:layout_marginTopPercent="68.5%"
+        app:layout_marginStartPercent="22%"
+        app:layout_marginLeftPercent="22%"/>
+
+    <ImageView
+        android:contentDescription="@string/imgDes"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/imgDobPro"
+        android:src="@drawable/dobicon"
+        app:layout_marginTopPercent="77%"
+        app:layout_marginStartPercent="10%"
+        app:layout_marginLeftPercent="10%"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:textColor="#FFFFFF"
+        android:id="@+id/profileDobTxt"
+        app:layout_marginTopPercent="77.5%"
+        app:layout_marginStartPercent="22%"
+        app:layout_marginLeftPercent="22%"/>
+
+    <ImageView
+        android:contentDescription="@string/imgDes"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/imgGenderPro"
+        android:src="@drawable/gendericon"
+        app:layout_marginTopPercent="86%"
+        app:layout_marginStartPercent="10%"
+        app:layout_marginLeftPercent="10%" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/profileGenderTxt"
+        android:textColor="#FFFFFF"
+        app:layout_marginTopPercent="86.5%"
+        app:layout_marginStartPercent="22%"
+        app:layout_marginLeftPercent="22%" />
+
+    <ImageView
+        android:contentDescription="@string/imgDes"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:id="@+id/editButton"
+        android:src="@drawable/edit_icon"
+        app:layout_marginTopPercent="82%"
+        app:layout_marginStartPercent="70%"
+        app:layout_marginLeftPercent="70%" />
+
+
+</android.support.percent.PercentRelativeLayout>

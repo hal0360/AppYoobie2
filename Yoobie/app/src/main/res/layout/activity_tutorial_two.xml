@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#B3000000"
+    android:id="@+id/tutorial2"
+    tools:context="nz.co.udenbrothers.yoobie.TutorialTwoActivity">
+
+    <View
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="50%"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="5%"
+        android:background="#FFFFFF" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/border_tutorial_replay"
+        app:layout_heightPercent="15%"
+        app:layout_marginLeftPercent="2%"
+        app:layout_marginStartPercent="2%"
+        app:layout_marginTopPercent="36.7%"
+        app:layout_widthPercent="96%" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/countdown_border"
+        android:gravity="center"
+        android:text="000"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        app:layout_heightPercent="11.6%"
+        app:layout_marginLeftPercent="5%"
+        app:layout_marginStartPercent="5%"
+        app:layout_marginTopPercent="38.4%"
+        app:layout_widthPercent="20%" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/countdown_border"
+        android:gravity="center"
+        android:text="000"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        app:layout_heightPercent="11.6%"
+        app:layout_marginLeftPercent="28.2%"
+        app:layout_marginStartPercent="28.2%"
+        app:layout_marginTopPercent="38.4%"
+        app:layout_widthPercent="20%" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/countdown_border"
+        android:gravity="center"
+        android:text="000"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        app:layout_heightPercent="11.6%"
+        app:layout_marginLeftPercent="51.4%"
+        app:layout_marginStartPercent="51.4%"
+        app:layout_marginTopPercent="38.4%"
+        app:layout_widthPercent="20%" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/countdown_border"
+        android:gravity="center"
+        android:text="000"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        app:layout_heightPercent="11.6%"
+        app:layout_marginLeftPercent="74.6%"
+        app:layout_marginStartPercent="74.6%"
+        app:layout_marginTopPercent="38.4%"
+        app:layout_widthPercent="20%" />
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/border_tutorial"
+        app:layout_heightPercent="35%"
+        app:layout_marginLeftPercent="10%"
+        app:layout_marginStartPercent="10%"
+        app:layout_marginTopPercent="55%"
+        app:layout_widthPercent="80%">
+
+        <TextView
+            android:text="COUNTDOWN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:textSize="22sp"
+            android:textColor="#000000" />
+
+        <TextView
+            android:text="This is your active countdown. This timer will always be counting down to the next prize draw. When the timer expires, a user will randomly be selected. If this is you, you will be notified through the app that you have won.Our team will then contact you using your sign up details to confirm your identity and issue prize."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="43dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:text="Tap anywhere to continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="93%" />
+
+</android.support.percent.PercentRelativeLayout>

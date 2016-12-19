@@ -1,0 +1,71 @@
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/popup"
+    tools:context="nz.co.udenbrothers.yoobie.LastImageActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Lasted Viewed Tile"
+        android:textColor="#FFFFFF"
+        app:layout_marginTopPercent="5%"
+        android:layout_centerHorizontal="true" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:contentDescription="@string/imgDes"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="65%"
+        app:layout_heightPercent="36%"
+        android:id="@+id/imageLastView"
+        android:scaleType="fitXY"
+        app:layout_marginTopPercent="13%"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="90%"
+        app:layout_heightPercent="11%"
+        app:layout_marginTopPercent="86%"
+        android:textSize="20sp"
+        android:text="GO TO WEBSITE"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/mybutton2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Not the one you were looking for?"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        app:layout_marginTopPercent="52%"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="All current tiles can be viewed on our website: yoobieapp.com/current-ads"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        app:layout_marginTopPercent="61%"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="If you wish to find out more about this product or service, click the button below to visit their website."
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        app:layout_marginTopPercent="72%"
+        android:layout_centerHorizontal="true" />
+
+</android.support.percent.PercentRelativeLayout>

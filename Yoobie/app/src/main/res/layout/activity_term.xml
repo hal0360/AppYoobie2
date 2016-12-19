@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/popup"
+    tools:context="nz.co.udenbrothers.yoobie.TermActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Terms of Use"
+        android:textColor="#FFFFFF"
+        app:layout_marginTopPercent="5%"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="90%"
+        app:layout_heightPercent="13%"
+        app:layout_marginTopPercent="84%"
+        android:onClick="accept"
+        android:textSize="20sp"
+        android:text="ACCEPT"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/mybutton2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="So if you say, 'I want to make my button width 20% of the screen', on some devices you may not have enough room to display the entire text of the button. On other screens, you may have a button with an embarrassing amount of space, where the text takes up very little of the actual button.Let's take a really simple example: a button. Say you want to put a button in your layout. How big should it be? Well, it should be big enough to display the entire text of the button. It should also not take a lot of excessive space."
+        android:textColor="#FFFFFF"
+        app:layout_marginTopPercent="15%"
+        android:layout_centerHorizontal="true" />
+
+</android.support.percent.PercentRelativeLayout>

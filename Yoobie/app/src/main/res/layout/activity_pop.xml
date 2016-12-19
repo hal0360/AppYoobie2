@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#60CBF2"
+    tools:context="nz.co.udenbrothers.yoobie.PopActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#ffffff"
+        android:elevation="15dp"
+        app:layout_heightPercent="20%">
+
+        <ImageButton
+            android:id="@+id/imageHam2"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="22dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/dark_hamburger"
+            android:contentDescription="@string/imgDes"
+            android:onClick="close" />
+
+        <ImageView
+            android:contentDescription="@string/imgDes"
+            android:id="@+id/imageAvatar2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/avatar1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Ron Lu"
+            android:textColor="#000000"
+            android:id="@+id/PopProfileName"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/imageAvatar2"
+            android:layout_toEndOf="@+id/imageAvatar2"
+            android:layout_marginBottom="10dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_marginTopPercent="20%"
+        android:background="@drawable/mybutton3"
+        android:id="@+id/howItWorkButton">
+
+        <ImageView
+            android:contentDescription="@string/imgDes"
+            android:layout_height="35dp"
+            android:layout_width="35dp"
+            android:src="@drawable/howworksicon"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:id="@+id/imageViewtt1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="How It Works"
+            android:textColor="#FFFFFF"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageViewtt1"
+            android:layout_toEndOf="@+id/imageViewtt1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_marginTopPercent="32%"
+        android:background="@drawable/mybutton3"
+        android:id="@+id/aboutButton">
+
+        <ImageView
+            android:contentDescription="@string/imgDes"
+            android:layout_height="35dp"
+            android:layout_width="35dp"
+            android:src="@drawable/abouticon"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:id="@+id/imageViewtt2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="About"
+            android:textColor="#FFFFFF"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageViewtt2"
+            android:layout_toEndOf="@+id/imageViewtt2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_marginTopPercent="44%"
+        android:background="@drawable/mybutton3"
+        android:id="@+id/contactButton">
+
+        <ImageView
+            android:contentDescription="@string/imgDes"
+            android:layout_height="35dp"
+            android:layout_width="35dp"
+            android:src="@drawable/iconphone"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:id="@+id/imageViewtt3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="Contact"
+            android:textColor="#FFFFFF"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageViewtt3"
+            android:layout_toEndOf="@+id/imageViewtt3"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_marginTopPercent="56%"
+        android:background="@drawable/mybutton3"
+        android:id="@+id/termServButton">
+
+        <ImageView
+            android:contentDescription="@string/imgDes"
+            android:layout_height="35dp"
+            android:layout_width="35dp"
+            android:src="@drawable/termsicon"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:id="@+id/imageViewtt4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="Terms of Service"
+            android:textColor="#FFFFFF"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageViewtt4"
+            android:layout_toEndOf="@+id/imageViewtt4"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="12%"
+        app:layout_marginTopPercent="68%"
+        android:background="@drawable/mybutton3"
+        android:id="@+id/privacyButton">
+
+        <ImageView
+            android:contentDescription="@string/imgDes"
+            android:layout_height="35dp"
+            android:layout_width="35dp"
+            android:src="@drawable/privacyicon"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:id="@+id/imageViewtt5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="Privacy Policy"
+            android:textColor="#FFFFFF"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageViewtt5"
+            android:layout_toEndOf="@+id/imageViewtt5"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+    </RelativeLayout>
+
+</android.support.percent.PercentRelativeLayout>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="nz.co.udenbrothers.yoobie">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true"
+        tools:ignore="UnusedAttribute" />
+
+    <application
+        android:allowBackup="false"
+        android:fullBackupContent="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTwoTheme"/>
+
+        <service
+            android:name=".YoobieService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":yoomanager" />
+
+        <activity
+            android:name=".TermActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FloatTheme" />
+        <activity
+            android:name=".SignupActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".tools.InternetService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
+            android:name=".PopActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PopTheme" />
+
+        <receiver
+            android:name=".tools.CheckReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_LOW" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".tools.UpdateReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="yoobieSendStamp" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".LastImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FloatTheme" />
+
+        <service
+            android:name=".PopupService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
+            android:name=".EditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".WarningActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FloatTheme" />
+        <activity
+            android:name=".MenuActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AvatarActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".TutorialActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TutorialTheme" />
+        <activity
+            android:screenOrientation="portrait"
+            android:theme="@style/TutorialTheme"
+            android:name=".TutorialTwoActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:theme="@style/TutorialTheme"
+            android:name=".TutorialThreeActivity"/>
+    </application>
+
+</manifest>

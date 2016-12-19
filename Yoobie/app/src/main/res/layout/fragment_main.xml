@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="nz.co.udenbrothers.yoobie.MainFragment">
+
+    <TextView
+        android:id="@+id/txtTimerDay2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/countdown_border"
+        android:gravity="center"
+        android:text="005"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        android:elevation="15dp"
+        app:layout_heightPercent="14.5%"
+        app:layout_marginLeftPercent="5%"
+        app:layout_marginStartPercent="5%"
+        app:layout_marginTopPercent="23%"
+        app:layout_widthPercent="20%" />
+
+    <TextView
+        android:id="@+id/txtTimerHour2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/countdown_border"
+        android:gravity="center"
+        android:text="555"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        android:elevation="15dp"
+        app:layout_heightPercent="14.5%"
+        app:layout_marginLeftPercent="28.2%"
+        app:layout_marginStartPercent="28.2%"
+        app:layout_marginTopPercent="23%"
+        app:layout_widthPercent="20%" />
+
+    <TextView
+        android:id="@+id/txtTimerMinute2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/countdown_border"
+        android:gravity="center"
+        android:text="000"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        android:elevation="15dp"
+        app:layout_heightPercent="14.5%"
+        app:layout_marginLeftPercent="51.4%"
+        app:layout_marginStartPercent="51.4%"
+        app:layout_marginTopPercent="23%"
+        app:layout_widthPercent="20%" />
+
+    <TextView
+        android:id="@+id/txtTimerSecond2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/countdown_border"
+        android:gravity="center"
+        android:text="000"
+        android:elevation="15dp"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        app:layout_heightPercent="14.5%"
+        app:layout_marginLeftPercent="74.6%"
+        app:layout_marginStartPercent="74.6%"
+        app:layout_marginTopPercent="23%"
+        app:layout_widthPercent="20%" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="REPLAY &amp; ClAIM"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:layout_below="@+id/lastTileButton"
+        android:layout_marginTop="0dp" />
+
+    <ImageView
+        android:id="@+id/lastTileButton"
+        android:contentDescription="@string/imgDes"
+        android:src="@drawable/replay_icon"
+        android:layout_height="110dp"
+        android:layout_width="110dp"
+        app:layout_marginTopPercent="58%"
+        android:layout_centerHorizontal="true" />
+
+</android.support.percent.PercentRelativeLayout>

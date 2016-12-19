@@ -1,0 +1,61 @@
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/popup"
+    tools:context="nz.co.udenbrothers.yoobie.WarningActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="WARNING"
+        android:textColor="#FFFFFF"
+        app:layout_marginTopPercent="6%"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="90%"
+        app:layout_heightPercent="14%"
+        app:layout_marginTopPercent="84%"
+        android:onClick="turnoff"
+        android:textSize="20sp"
+        android:text="TURN IT OFF"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/mybutton2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Turning the Lockscreen Tile off will prevent you from gaining any further entries to the big draw."
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        app:layout_marginTopPercent="17%"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="You will also stop seeing instant prizes while this remains off."
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        app:layout_marginTopPercent="39%"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Remember to turn the tile back on to continue gaining additional entries and instant prizes."
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        app:layout_marginTopPercent="60%"
+        android:layout_centerHorizontal="true" />
+
+</android.support.percent.PercentRelativeLayout>

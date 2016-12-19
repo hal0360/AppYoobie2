@@ -1,0 +1,49 @@
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/mainParent"
+    android:layout_height="match_parent" tools:context="nz.co.udenbrothers.yoobie.SignupActivity"
+    android:background="@drawable/start_wallpaper">
+
+    <RelativeLayout
+        android:id="@+id/animationHoldingFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:contentDescription="@string/imgDes"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/finger"
+            android:id="@+id/imageView777"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Since this is the first time you launched this app. Please allow this app to draw over others. You will be taking to permission screen in a few seconds."
+        android:textColor="#FF0000"
+        android:visibility="invisible"
+        android:id="@+id/textViewDrawOver"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <nz.co.udenbrothers.yoobie.models.WaveView
+        android:id="@+id/myWave2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fraggy">
+
+    </RelativeLayout>
+
+</android.support.percent.PercentRelativeLayout>

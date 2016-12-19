@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="nz.co.udenbrothers.yoobie.ForgotFragment">
+
+    <ImageView
+        android:contentDescription="@string/imgDes"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/back_arrow" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:text="Forgot Password"
+        android:id="@+id/ForText"
+        app:layout_marginTopPercent="26%"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/imgMailfor"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_marginStartPercent="5%"
+        app:layout_marginLeftPercent="5%"
+        app:layout_marginTopPercent="47.8%"
+        android:contentDescription="@string/imgDes"
+        android:src="@drawable/iconemail" />
+
+    <EditText
+        android:id="@+id/editResetMail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="10%"
+        app:layout_marginTopPercent="45%"
+        app:layout_widthPercent="90%"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="40dp"
+        android:paddingStart="40dp"
+        android:background="@null"
+        android:hint="Email address"
+        android:inputType="textEmailAddress"
+        android:textColor="#FFFF00"
+        android:textColorHint="#FFFFFF" />
+
+    <View
+        android:id="@+id/UnderLine2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_marginTopPercent="54%"
+        app:layout_widthPercent="90%"
+        android:layout_centerHorizontal="true"
+        android:background="#FFFFFF" />
+
+    <Button
+        android:id="@+id/ForgotButton"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="90%"
+        app:layout_heightPercent="11%"
+        app:layout_marginTopPercent="86%"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/mybutton2"
+        android:text="RESET PASSWORD"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+</android.support.percent.PercentRelativeLayout>
