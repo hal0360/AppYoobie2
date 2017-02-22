@@ -15,9 +15,10 @@ import android.widget.Toast;
 import java.io.File;
 
 import nz.co.udenbrothers.yoobie.tools.MySQLiteHelper;
+import nz.co.udenbrothers.yoobie.tools.RequestTask;
 import nz.co.udenbrothers.yoobie.tools.UpdateReceiver;
 
-public class ControlFragment extends Fragment implements View.OnClickListener{
+public class ControlFragment extends Fragment implements View.OnClickListener, AsynCallback{
 
     private MainActivity mainAct;
     private RadioButton radSlide;
@@ -117,6 +118,34 @@ public class ControlFragment extends Fragment implements View.OnClickListener{
         return view;
     }
 
+    public void postCallback(String result){
+        SharedPreferences.Editor editor = mainAct.pref.edit();
+        editor.putString("authorization", "N/A");
+        editor.putInt("active", 0);
+        editor.apply();
+        Toast.makeText(mainAct, "Logout successful. All data cleared", Toast.LENGTH_SHORT).show();
+        UpdateReceiver ta = new UpdateReceiver();
+        ta.cancelling(mainAct);
+        Intent mSerIntenttt = new Intent(mainAct, YoobieService.class);
+        mSerIntenttt.putExtra("active", 0);
+        mSerIntenttt.putExtra("priority", 0);
+        mainAct.startService(mSerIntenttt);
+
+        File filess = mainAct.getExternalFilesDir(null);
+        if (filess != null) {
+            File[] filenames = filess.listFiles();
+            for (File tmpf : filenames) {
+                tmpf.delete();
+            }
+        }
+
+        MySQLiteHelper dbHandler = MySQLiteHelper.getInstance(mainAct);
+        dbHandler.clearStamp();
+        dbHandler.clearImage();
+        startActivity(new Intent(mainAct, SignupActivity.class));
+        mainAct.finish();
+    }
+
     @Override
     public void onClick(View v) {
         SharedPreferences.Editor editor = mainAct.pref.edit();
@@ -161,28 +190,7 @@ public class ControlFragment extends Fragment implements View.OnClickListener{
                 }
                 break;
             case R.id.logoutButton:
-                editor.clear();
-                Toast.makeText(mainAct, "Logout successful. All data cleared", Toast.LENGTH_SHORT).show();
-                UpdateReceiver ta = new UpdateReceiver();
-                ta.cancelling(mainAct);
-                Intent mSerIntenttt = new Intent(mainAct, YoobieService.class);
-                mSerIntenttt.putExtra("active", 0);
-                mainAct.startService(mSerIntenttt);
-
-                File filess = mainAct.getExternalFilesDir(null);
-                if (filess != null) {
-                    File[] filenames = filess.listFiles();
-                    for (File tmpf : filenames) {
-                        tmpf.delete();
-                    }
-                }
-
-                MySQLiteHelper dbHandler = MySQLiteHelper.getInstance(mainAct);
-                dbHandler.clearStamp();
-                dbHandler.clearImage();
-
-                startActivity(new Intent(mainAct, SignupActivity.class));
-                mainAct.finish();
+                new RequestTask(mainAct,this,"POST",null,mainAct.pref.getString("authorization", "N/A")).execute("http://yoobie-api.azurewebsites.net/logout");
                 break;
         }
         editor.apply();

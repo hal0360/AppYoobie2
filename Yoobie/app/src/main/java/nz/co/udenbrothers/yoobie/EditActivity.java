@@ -4,31 +4,33 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Build;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
+
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
+
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Spinner;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Locale;
 
-import nz.co.udenbrothers.yoobie.models.Member;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import nz.co.udenbrothers.yoobie.models.Profile;
+
 import nz.co.udenbrothers.yoobie.models.WaveHelper;
 import nz.co.udenbrothers.yoobie.models.WaveView;
 import nz.co.udenbrothers.yoobie.tools.RequestTask;
@@ -36,88 +38,52 @@ import nz.co.udenbrothers.yoobie.tools.RequestTask;
 public class EditActivity extends AppCompatActivity implements View.OnClickListener ,AsynCallback{
 
     private Calendar myCalendar;
-    private String gender;
     private EditText ed;
     private EditText ed2;
-    private EditText ed7;
+    private EditText ed3;
+    private EditText ed4;
     private RadioButton radMale;
     private RadioButton radFemale;
     private TextView dobTxt;
-    private Spinner spinner;
     public SharedPreferences pref;
     public WaveHelper mWaveHelper;
     private float startingY;
     private InputMethodManager imm;
+    private Profile profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+
+        Gson gson = new Gson();
+        profile = gson.fromJson(getIntent().getStringExtra("profileJson"), Profile.class);
         pref = getSharedPreferences("app", MODE_PRIVATE);
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-
-        ed = (EditText)findViewById(R.id.editeditName);
-        ed2 = (EditText)findViewById(R.id.editeditMobile);
-        ed7 = (EditText)findViewById(R.id.editeditCity);
+        ed = (EditText)findViewById(R.id.editeditFirst);
+        ed2 = (EditText)findViewById(R.id.editeditLast);
+        ed3 = (EditText)findViewById(R.id.editeditMobile);
+        ed4 = (EditText)findViewById(R.id.editeditOther);
         radMale = (RadioButton)findViewById(R.id.radioeditMale);
         radFemale = (RadioButton)findViewById(R.id.radioeditFemale);
         radMale.setOnClickListener(this);
         radFemale.setOnClickListener(this);
-
         dobTxt = (TextView) findViewById(R.id.editeditDob);
         dobTxt.setOnClickListener(this);
-
-        spinner = (Spinner) findViewById(R.id.editeditCountry);
-        ArrayList<String> allcountry = new ArrayList<>();
-        allcountry.add("Select Country");
-        Locale[] locale = Locale.getAvailableLocales();
-        String countryy;
-        for( Locale loc : locale ){
-            countryy = loc.getDisplayCountry();
-            if( countryy.length() > 0 && !allcountry.contains(countryy) ){
-                allcountry.add( countryy );
-            }
-        }
-        Collections.sort(allcountry);
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allcountry){
-            @Override
-            public boolean isEnabled(int position){
-                if(position == 0) return false;
-                else return true;
-            }
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View v = super.getView(position, convertView, parent);
-                TextView tiv = (TextView) v;
-                if(position == 0) tiv.setTextColor(Color.WHITE);
-                else tiv.setTextColor(Color.GREEN);
-                return v;
-            }
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if(position == 0) tv.setTextColor(Color.GRAY);
-                else tv.setTextColor(Color.BLACK);
-                return view;
-            }
-        };
-
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
-
         Button finButt = (Button)findViewById(R.id.FinishEditButton);
         finButt.setOnClickListener(this);
         myCalendar = Calendar.getInstance();
         myCalendar.set(Calendar.YEAR, 1999);
         myCalendar.set(Calendar.MONTH, 6);
         myCalendar.set(Calendar.DAY_OF_MONTH, 6);
-
-        ed.setText(pref.getString("name", "N/A"));
-        ed2.setText(pref.getString("mobile", "N/A"));
-        dobTxt.setText(pref.getString("dob", "N/A"));
-        ed7.setText(pref.getString("city", "N/A"));
-        if(pref.getString("gender", "N/A").equals("male")){
+        ed.setText(profile.firstName);
+        ed2.setText(profile.lastName);
+        ed3.setText(profile.phoneMobile);
+        if(!profile.phoneOther.equals("00000000")){
+            ed4.setText(profile.phoneOther);
+        }
+        dobTxt.setText(profile.dateOfBirth);
+        if(profile.gender == 1){
             radMale.setChecked(true);
         }else{
             radFemale.setChecked(true);
@@ -163,6 +129,11 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void postCallback(String result){
+
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("hasPro", false);
+        editor.apply();
+
         Toast.makeText(this,result, Toast.LENGTH_SHORT).show();
         finish();
     }
@@ -171,30 +142,54 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.FinishEditButton:
-               /* String usr = ed.getText().toString().trim();
-                String mob = ed2.getText().toString().trim();
-                String bir = ed5.getText().toString().trim();
-                String loc = ed6.getText().toString().trim();
-                String loc2 = ed7.getText().toString().trim();
-                //mainAct.hideSoftKeyboard();
-                if (usr.equals("") || mob.equals("") || bir.equals("") || loc.equals("") || loc2.equals("")){
-                    Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
+                String first = ed.getText().toString().trim();
+                String last = ed2.getText().toString().trim();
+                String mob = ed3.getText().toString().trim();
+                String other = ed4.getText().toString().trim();
+                String dob = dobTxt.getText().toString().trim();
+
+                if (first.equals("")){
+                    ed.requestFocus();
+                    ed.setError("Invaid first anme");
                     return;
                 }
-                SharedPreferences pref = this.getSharedPreferences("app", Context.MODE_PRIVATE); //1
-                Gson gson = new Gson();
-                Member me = new Member(0, usr, pref.getString("password", "N/A"), pref.getString("email", "N/A"), gender, bir, loc, loc2, Build.MANUFACTURER + " " + android.os.Build.MODEL, mob);
-                new RequestTask(this,this,gson.toJson(me)).execute("http://103.18.58.26/Alpha/users/modify"); */
 
-                //ed7.setError("This field can not be blank");
+                if (last.equals("")){
+                    ed2.requestFocus();
+                    ed2.setError("Invaid last  anme");
+                    return;
+                }
+
+                Matcher matcher = Pattern.compile("^[0-9]{8,12}$").matcher(mob);
+                if (!matcher.matches( )) {
+                    ed3.requestFocus();
+                    ed3.setError("Invaid phone number");
+                    return;
+                }
+
+                if (!matcher.matches( )) {
+                    ed4.requestFocus();
+                    ed4.setError("Invaid phone number");
+                    return;
+                }
+
+                profile.firstName = first;
+                profile.lastName = last;
+                profile.phoneMobile = mob;
+                profile.phoneOther = other;
+                profile.dateOfBirth = dob;
+
+                SharedPreferences pref = this.getSharedPreferences("app", Context.MODE_PRIVATE);
+                Gson gson = new Gson();
+                new RequestTask(this,this,"PUT",gson.toJson(profile),pref.getString("authorization", "N/A")).execute("http://yoobie-api.azurewebsites.net/profile");
                 break;
             case R.id.radioeditMale:
                 radFemale.setChecked(false);
-                gender = "male";
+                profile.gender = 1;
                 break;
             case R.id.radioeditFemale:
                 radMale.setChecked(false);
-                gender = "female";
+                profile.gender = 2;
                 break;
             case R.id.editeditDob:
                 DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {

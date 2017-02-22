@@ -19,28 +19,15 @@
             app:layout_marginTopPercent="4%"
             android:layout_centerHorizontal="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Not Avaliable"
-            android:textColor="#000000"
-            android:ellipsize="end"
-            android:lines="1"
-            android:id="@+id/profileNameTxt"
-            app:layout_marginTopPercent="29%"
-            android:layout_centerHorizontal="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Not Avaliable"
         android:id="@+id/EntryTxt"
         android:textColor="#000000"
-        android:ellipsize="end"
-        android:lines="1"
-        app:layout_marginTopPercent="34%"
+
+        app:layout_marginTopPercent="30%"
         android:layout_centerHorizontal="true" />
 
 
@@ -95,7 +82,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:id="@+id/imgLocPro"
-        android:src="@drawable/iconlocation"
+        android:src="@drawable/iconphone"
         app:layout_marginTopPercent="68%"
         app:layout_marginStartPercent="10%"
         app:layout_marginLeftPercent="10%" />
@@ -104,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Christchurch, New Zealand"
+        android:text="No Additional Contact"
         android:id="@+id/profileLocationTxt"
         android:ellipsize="end"
         android:lines="1"

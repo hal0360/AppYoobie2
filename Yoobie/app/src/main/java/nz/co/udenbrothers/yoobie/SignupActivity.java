@@ -1,14 +1,10 @@
 package nz.co.udenbrothers.yoobie;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
-import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -22,15 +18,18 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import nz.co.udenbrothers.yoobie.models.Country;
+import nz.co.udenbrothers.yoobie.models.User;
 import nz.co.udenbrothers.yoobie.models.WaveHelper;
 import nz.co.udenbrothers.yoobie.models.WaveView;
+import nz.co.udenbrothers.yoobie.tools.DataTask;
 
 public class SignupActivity extends AppCompatActivity {
 
     private android.support.v4.app.FragmentManager manager;
     public Handler handler;
     public SharedPreferences pref;
-    private TextView tDraw;
     public ImageView mainLogo;
     public static int OVERLAY_PERMISSION_REQ_CODE = 1234;
     public int curFrag;
@@ -38,37 +37,8 @@ public class SignupActivity extends AppCompatActivity {
     public WaveHelper mWaveHelper;
     private float startingY;
     private InputMethodManager imm;
-
-    public boolean checkOverDraw() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!Settings.canDrawOverlays(this)) {
-                tDraw.setVisibility(View.VISIBLE);
-                mainLogo.setVisibility(View.GONE);
-                handler.postDelayed(new Runnable() {
-                    @TargetApi(Build.VERSION_CODES.M)
-                    @Override
-                    public void run() {
-                        Intent intenty = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
-                        startActivityForResult(intenty, OVERLAY_PERMISSION_REQ_CODE);
-                    }
-                }, 3000);
-                return false;
-            }
-        }
-        mainLogo.setVisibility(View.VISIBLE);
-        tDraw.setVisibility(View.GONE);
-        return true;
-    }
-
-    @TargetApi(Build.VERSION_CODES.M)
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == OVERLAY_PERMISSION_REQ_CODE) {
-            if (checkOverDraw()) {
-                setinallup();
-            }
-        }
-    }
+    public User newUsr;
+    public Country[] countries;
 
     @Override
     public void onBackPressed() {
@@ -128,6 +98,7 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         pref = getSharedPreferences("app", MODE_PRIVATE);
 
         try {
@@ -135,6 +106,7 @@ public class SignupActivity extends AppCompatActivity {
             if(versionCode > pref.getInt("version", 0)){
                 SharedPreferences.Editor editor = pref.edit();
                 editor.clear();
+                editor.apply();
                 editor.putInt("version", versionCode);
                 editor.apply();
             }
@@ -142,29 +114,30 @@ public class SignupActivity extends AppCompatActivity {
             Toast.makeText(this, "problem versioning this app", Toast.LENGTH_SHORT).show();
         }
 
-        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        setContentView(R.layout.activity_signup);
         startService(new Intent(this, YoobieService.class));
-        curFrag = 0;
-        mainLogo = (ImageView) findViewById(R.id.imageView777);
-        logoContain = (RelativeLayout)findViewById(R.id.animationHoldingFrame);
-        mWaveHelper = null;
-        tDraw = (TextView) findViewById(R.id.textViewDrawOver);
         handler = new Handler();
-        manager = getSupportFragmentManager();
-        FragmentTransaction transactionn = manager.beginTransaction();
-        transactionn.add(R.id.fraggy, new DummyFragment());
-        transactionn.commit();
-        if (checkOverDraw()) setinallup();
-    }
-
-    public void setinallup() {
-        if (pref.getInt("id", 0) > 0) {
+        if (!pref.getString("authorization", "N/A").equals("N/A")) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
             return;
         }
 
+        newUsr = new User();
+        new DataTask(this).execute("http://yoobie-api.azurewebsites.net/registration/country");
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        setContentView(R.layout.activity_signup);
+        curFrag = 0;
+        mainLogo = (ImageView) findViewById(R.id.imageView777);
+        logoContain = (RelativeLayout)findViewById(R.id.animationHoldingFrame);
+        mWaveHelper = null;
+        manager = getSupportFragmentManager();
+        FragmentTransaction transactionn = manager.beginTransaction();
+        transactionn.add(R.id.fraggy, new DummyFragment());
+        transactionn.commit();
+        setinallup();
+    }
+
+    public void setinallup() {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

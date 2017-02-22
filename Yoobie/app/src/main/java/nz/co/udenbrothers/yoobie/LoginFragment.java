@@ -6,20 +6,19 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationSet;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
-
-import nz.co.udenbrothers.yoobie.models.Member;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import nz.co.udenbrothers.yoobie.models.LoginData;
+import nz.co.udenbrothers.yoobie.models.Token;
 import nz.co.udenbrothers.yoobie.tools.InternetService;
 import nz.co.udenbrothers.yoobie.tools.RequestTask;
 import nz.co.udenbrothers.yoobie.tools.UpdateReceiver;
@@ -52,19 +51,20 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Asy
 
     public void postCallback(String result){
         Gson gson = new Gson();
+
+        if(result.equals("denied")){
+            ed.requestFocus();
+            ed.setError("Email or password incorrect");
+            return;
+        }
+
         try {
-            Member myId = gson.fromJson(result, Member.class);
+            Token myTok = gson.fromJson(result, Token.class);
             SharedPreferences settings;
             SharedPreferences.Editor editor;
             settings = mainAct.getSharedPreferences("app", Context.MODE_PRIVATE);
             editor = settings.edit();
-            editor.putInt("id", myId.id);
-            editor.putString("name", myId.username);
-            editor.putString("email", myId.email);
-            editor.putString("dob", myId.date_of_birth);
-            editor.putString("location", myId.country + ", " + myId.city);
-            editor.putString("mobile", myId.mobile);
-            editor.putString("gender", myId.gender);
+            editor.putString("authorization", Base64.encodeToString((myTok.userId + ":" + myTok.accessToken).getBytes("UTF-8"), Base64.NO_WRAP));
             editor.putInt("active", 1);
             editor.apply();
             mainAct.startService(new Intent(mainAct, InternetService.class));
@@ -76,7 +76,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Asy
             startActivity(new Intent(mainAct, MainActivity.class));
             mainAct.finish();
         } catch (Exception e) {
-            Toast.makeText(mainAct,result, Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainAct,"Data error", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -86,10 +86,24 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Asy
             case R.id.LoginButton:
                 String usr = ed.getText().toString().trim();
                 String pass = ed2.getText().toString().trim();
-                //mainAct.hideSoftKeyboard();
+
+                Matcher m = Pattern.compile("^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*$").matcher(usr);
+                if (!m.matches( )) {
+                    ed.requestFocus();
+                    ed.setError("Invaid email");
+                    return;
+                }
+
+                if (pass.length() < 6){
+                    ed2.requestFocus();
+                    ed2.setError("Must be at least 6 length");
+                    ed2.setText("");
+                    return;
+                }
+
                 Gson gson = new Gson();
-                Member me = new Member(0, "dur", pass, usr, "dur", "dur", "dur", "dur", Build.MANUFACTURER + " " + android.os.Build.MODEL,"df");
-                new RequestTask(mainAct,this,gson.toJson(me)).execute("http://103.18.58.26/Alpha/users/signin");
+                LoginData loginData = new LoginData(usr, pass, Build.MANUFACTURER + " " + android.os.Build.MODEL);
+                new RequestTask(mainAct,this,"POST",gson.toJson(loginData),null).execute("http://yoobie-api.azurewebsites.net/login");
                 break;
             case R.id.textForget:
                 mainAct.mWaveHelper.paraAnimation(false);

@@ -2,7 +2,9 @@ package nz.co.udenbrothers.yoobie;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,6 +14,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import nz.co.udenbrothers.yoobie.models.Profile;
 import nz.co.udenbrothers.yoobie.models.WaveHelper;
 import nz.co.udenbrothers.yoobie.models.WaveView;
 
@@ -25,8 +29,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean isHome;
     private float waterlevel;
     private WaveHelper mWaveHelper;
-    private boolean hasStarted;
-    public boolean hasEntry;
+   // private boolean hasStarted;
+   // public boolean hasEntry;
+   // public boolean hasProile;
+    public Profile profile;
     private ImageView ihome, iprofile, iprize, isetting;
 
     @Override
@@ -34,11 +40,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        profile = new Profile();
         mWaveHelper = new WaveHelper((WaveView) findViewById(R.id.myWave));
         waterlevel = 0.73f;
+   //     hasProile = false;
         isHome = true;
-        hasStarted = true;
-        hasEntry = true;
+      //  hasStarted = true;
+      //  hasEntry = true;
         pref = getSharedPreferences("app", MODE_PRIVATE);
         handler = new Handler();
         pager = (ViewPager) findViewById(R.id.viewPager);
@@ -136,10 +144,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
-        if(hasStarted){
+
+      //  if(hasStarted){
             mWaveHelper.initAnimation(0f,0.73f);
-            hasStarted = false;
-        }
+         //   hasStarted = false;
+       // }
 
         if(pref.getBoolean("firstUse", true)){
             SharedPreferences.Editor editor = pref.edit();
@@ -163,6 +172,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onResume(){
         super.onResume();
+
+        if(!pref.getBoolean("firstUse", true)){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!Settings.canDrawOverlays(this)) {
+                    startActivity(new Intent(this, AlertActivity.class));
+                }
+            }
+        }
 
         if(pref.getInt("active", 0) == 0){
             thumb2.setVisibility(View.INVISIBLE);
@@ -238,6 +255,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("hasPro", false);
+        editor.apply();
         handler.removeCallbacksAndMessages(null);
     }
 }

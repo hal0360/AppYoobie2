@@ -1,5 +1,6 @@
 package nz.co.udenbrothers.yoobie;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -7,10 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.telephony.TelephonyManager;
+import android.provider.Settings;
+import android.view.View;
 
 import nz.co.udenbrothers.yoobie.tools.CheckReceiver;
 
@@ -74,6 +78,10 @@ public class YoobieService extends Service {
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!Settings.canDrawOverlays(connn)) return;
+            }
 
             TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
             if (pref.getInt("active", 0) == 0 || !cooldown || tm.getCallState() != TelephonyManager.CALL_STATE_IDLE) return;

@@ -107,25 +107,22 @@ public class PopupService extends Service {
 
         targetImg = dbHandler.getImage();
         if (targetImg != null) {
-
-            if(targetImg.type.equals("jpg")){
-                ads.setImageDrawable(Drawable.createFromPath(getExternalFilesDir(null) + "/." + targetImg.id + ".jpg"));
-            }
-            else {
-                try{
-                    ads.setImageDrawable(new GifDrawable(getExternalFilesDir(null) + "/." + targetImg.id + ".gif"));
+            try{
+                if(targetImg.type.equals("gif")){
+                    ads.setImageDrawable(new GifDrawable(getExternalFilesDir(null) + "/" + targetImg.id + ".gif"));
                 }
-                catch (Exception e){}
+                else {
+                    ads.setImageDrawable(Drawable.createFromPath(getExternalFilesDir(null) + "/" + targetImg.id + "." + targetImg.type));
+                }
             }
-
-        } else {
-
-           ads.setImageResource(R.drawable.notaval);
+            catch (Exception e){
+                ads.setImageResource(R.drawable.notaval);
+                targetImg = null;
+            }
+            windowManager.addView(ads, params);
         }
-        windowManager.addView(ads, params);
 
         firstRun = false;
-
         return START_NOT_STICKY;
     }
 
@@ -136,7 +133,7 @@ public class PopupService extends Service {
         if (targetImg != null) {
             dbHandler.addStamp(targetImg.id, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(new Date()));
             editor.putString("lastImgType", targetImg.type);
-            editor.putInt("lastImgNo", targetImg.id);
+            editor.putString("lastImgNo", targetImg.id);
         }
         if (ads.isShown()){
             windowManager.removeView(ads);

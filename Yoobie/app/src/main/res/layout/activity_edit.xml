@@ -34,7 +34,6 @@
         android:textSize="20sp" />
 
     <ImageView
-        android:id="@+id/imgNameReg"
         android:layout_width="25dp"
         android:layout_height="25dp"
         app:layout_marginStartPercent="5%"
@@ -44,7 +43,7 @@
         android:src="@drawable/iconname" />
 
     <EditText
-        android:id="@+id/editeditName"
+        android:id="@+id/editeditFirst"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_heightPercent="10%"
@@ -55,7 +54,7 @@
         android:paddingStart="40dp"
         android:background="@null"
         android:inputType="text"
-        android:hint="Name"
+        android:hint="First name"
         android:textColor="#FFFF00"
         android:textColorHint="#FFFFFF" />
 
@@ -69,17 +68,16 @@
         android:background="#60CBF2" />
 
     <ImageView
-        android:id="@+id/imgRegMobile"
         android:layout_width="25dp"
         android:layout_height="25dp"
         app:layout_marginStartPercent="5%"
         app:layout_marginLeftPercent="5%"
         app:layout_marginTopPercent="32.8%"
         android:contentDescription="@string/imgDes"
-        android:src="@drawable/iconphone" />
+        android:src="@drawable/iconname" />
 
     <EditText
-        android:id="@+id/editeditMobile"
+        android:id="@+id/editeditLast"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_heightPercent="10%"
@@ -89,8 +87,8 @@
         android:paddingLeft="40dp"
         android:paddingStart="40dp"
         android:background="@null"
-        android:hint="Mobile"
-        android:inputType="number"
+        android:hint="Last name"
+        android:inputType="text"
         android:textColor="#FFFF00"
         android:textColorHint="#FFFFFF" />
 
@@ -104,25 +102,29 @@
         android:background="#60CBF2" />
 
     <ImageView
-        android:id="@+id/imgRegCountry"
         android:layout_width="25dp"
         android:layout_height="25dp"
         app:layout_marginStartPercent="5%"
         app:layout_marginLeftPercent="5%"
         app:layout_marginTopPercent="43%"
         android:contentDescription="@string/imgDes"
-        android:src="@drawable/iconlocation" />
+        android:src="@drawable/iconphone" />
 
-    <Spinner
-        android:id="@+id/editeditCountry"
+    <EditText
+        android:id="@+id/editeditMobile"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_heightPercent="10%"
         app:layout_marginTopPercent="40%"
         app:layout_widthPercent="90%"
         android:layout_centerHorizontal="true"
-        android:paddingLeft="32dp"
-        android:paddingStart="32dp" />
+        android:paddingLeft="40dp"
+        android:paddingStart="40dp"
+        android:background="@null"
+        android:hint="Mobile"
+        android:inputType="number"
+        android:textColor="#FFFF00"
+        android:textColorHint="#FFFFFF" />
 
     <View
         android:layout_centerHorizontal="true"
@@ -134,17 +136,16 @@
         android:background="#60CBF2" />
 
     <ImageView
-        android:id="@+id/imgRegCity"
         android:layout_width="25dp"
         android:layout_height="25dp"
         app:layout_marginStartPercent="5%"
         app:layout_marginLeftPercent="5%"
         app:layout_marginTopPercent="53%"
         android:contentDescription="@string/imgDes"
-        android:src="@drawable/iconlocation" />
+        android:src="@drawable/iconphone" />
 
     <EditText
-        android:id="@+id/editeditCity"
+        android:id="@+id/editeditOther"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_heightPercent="10%"
@@ -155,7 +156,7 @@
         android:paddingStart="40dp"
         android:background="@null"
         android:inputType="text"
-        android:hint="City"
+        android:hint="Additional contact"
         android:textColor="#FFFF00"
         android:textColorHint="#FFFFFF" />
 
@@ -169,7 +170,6 @@
         android:background="#60CBF2" />
 
     <ImageView
-        android:id="@+id/imgRegDob"
         android:layout_width="25dp"
         android:layout_height="25dp"
         app:layout_marginStartPercent="5%"

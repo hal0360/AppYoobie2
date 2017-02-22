@@ -16,7 +16,7 @@ public class WarningActivity extends AppCompatActivity {
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        getWindow().setLayout((int) (metrics.widthPixels * .8), (int) (metrics.heightPixels * .65));
+        getWindow().setLayout((int) (metrics.widthPixels * .8), (int) (metrics.heightPixels * .60));
     }
 
     public void turnoff(View v){

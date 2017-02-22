@@ -13,8 +13,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import nz.co.udenbrothers.yoobie.tools.RequestTask;
 
-public class RegisterOneFragment extends Fragment implements View.OnClickListener {
+public class RegisterOneFragment extends Fragment implements View.OnClickListener, AsynCallback{
 
     private SignupActivity mainAct;
     private EditText ed;
@@ -37,6 +40,7 @@ public class RegisterOneFragment extends Fragment implements View.OnClickListene
         }
         Button account = (Button) view.findViewById(R.id.AccountButton);
         account.setOnClickListener(this);
+
         return view;
     }
 
@@ -46,39 +50,70 @@ public class RegisterOneFragment extends Fragment implements View.OnClickListene
         mainAct = (SignupActivity) activity;
     }
 
+    public void postCallback(String result){
+        if(result.equals("true")){
+            mainAct.mWaveHelper.initAnimation(0.62f,0.95f);
+            mainAct.replaceFrag(new RegisterTwoFragment());
+            mainAct.curFrag = 2;
+        }
+        else if(result.equals("false")){
+            ed.requestFocus();
+            ed.setError("Email already in use.");
+        }
+        else {
+            Toast.makeText(mainAct,"Data error", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     public void onClick(View v) {
-        SharedPreferences.Editor editor = mainAct.pref.edit();
         switch (v.getId()) {
             case R.id.termCond:
                 if(terms.isChecked()) {
                     startActivity(new Intent(mainAct, TermActivity.class));
-
                 }
                 else {
+                    SharedPreferences.Editor editor = mainAct.pref.edit();
                     editor.putBoolean("accepted", false);
+                    editor.apply();
                 }
                 break;
             case R.id.AccountButton:
                 String usr = ed.getText().toString().trim();
                 String pass = ed2.getText().toString().trim();
                 String pass2 = ed3.getText().toString().trim();
-                //mainAct.hideSoftKeyboard();
-                if (usr.equals("") || pass.equals("") || !terms.isChecked()){
-                    Toast.makeText(mainAct, "Please fill all fields and agree to terms and conditions", Toast.LENGTH_SHORT).show();
+
+                Matcher m = Pattern.compile("^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*$").matcher(usr);
+                if (!m.matches( )) {
+                    ed.requestFocus();
+                    ed.setError("Invaid email");
                     return;
                 }
+
+                if (pass.length() < 6){
+                    ed2.requestFocus();
+                    ed2.setError("Must be at least 6 length");
+                    ed2.setText("");
+                    return;
+                }
+
                 if (!pass.equals(pass2)){
+                    ed3.requestFocus();
                     Toast.makeText(mainAct, "Password not match", Toast.LENGTH_SHORT).show();
+                    ed3.setError("Password not match");
+                    ed3.setText("");
                     return;
                 }
-                mainAct.mWaveHelper.initAnimation(0.62f,0.95f);
-                editor.putString("email", usr);
-                editor.putString("password", pass);
-                mainAct.replaceFrag(new RegisterTwoFragment());
-                mainAct.curFrag = 2;
+
+                if (!terms.isChecked()){
+                    Toast.makeText(mainAct, "Please agree to terms and conditions", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                new RequestTask(mainAct,this,"GET",null,null).execute("http://yoobie-api.azurewebsites.net/registration/email-available?email=" + usr);
+                mainAct.newUsr.email = usr;
+                mainAct.newUsr.password = pass;
                 break;
         }
-        editor.apply();
     }
 }

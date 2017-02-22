@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="nz.co.udenbrothers.yoobie.RegisterTwoFragment">
 
     <ImageView
@@ -87,6 +88,21 @@
         android:src="@drawable/iconphone" />
 
     <EditText
+        android:id="@+id/editRegMobileCode"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="10%"
+        app:layout_marginTopPercent="30%"
+        app:layout_widthPercent="90%"
+        android:background="@null"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="40dp"
+        android:paddingStart="40dp"
+        android:text="+61"
+        android:inputType="none"
+        android:textColor="#FFFFFF" />
+
+    <EditText
         android:id="@+id/editRegMobile"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -94,8 +110,8 @@
         app:layout_marginTopPercent="30%"
         app:layout_widthPercent="90%"
         android:layout_centerHorizontal="true"
-        android:paddingLeft="40dp"
-        android:paddingStart="40dp"
+        android:paddingLeft="95dp"
+        android:paddingStart="95dp"
         android:background="@null"
         android:hint="Mobile"
         android:inputType="number"
@@ -151,7 +167,7 @@
         android:contentDescription="@string/imgDes"
         android:src="@drawable/iconlocation" />
 
-    <EditText
+    <Spinner
         android:id="@+id/editRegCity"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -159,13 +175,8 @@
         app:layout_marginTopPercent="50%"
         app:layout_widthPercent="90%"
         android:layout_centerHorizontal="true"
-        android:paddingLeft="40dp"
-        android:paddingStart="40dp"
-        android:background="@null"
-        android:inputType="text"
-        android:hint="City"
-        android:textColor="#FFFF00"
-        android:textColorHint="#FFFFFF" />
+        android:paddingLeft="32dp"
+        android:paddingStart="32dp" />
 
     <View
         android:layout_centerHorizontal="true"

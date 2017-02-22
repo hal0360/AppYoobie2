@@ -40,6 +40,7 @@ public class StarupFragment extends Fragment implements View.OnClickListener{
         }
         view.findViewById(R.id.emailJoinButton).setOnClickListener(this);
         view.findViewById(R.id.facebookButton).setOnClickListener(this);
+
         return view;
     }
 

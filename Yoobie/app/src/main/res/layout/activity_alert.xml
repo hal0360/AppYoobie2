@@ -1,0 +1,43 @@
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/popup"
+    tools:context="nz.co.udenbrothers.yoobie.AlertActivity">
+
+
+    <ImageView
+        android:contentDescription="@string/imgDes"
+        android:src="@drawable/alert_icon"
+        android:layout_height="100dp"
+        android:layout_width="100dp"
+        app:layout_marginTopPercent="6%"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="90%"
+        app:layout_heightPercent="14%"
+        app:layout_marginTopPercent="84%"
+        android:onClick="takeToPermission"
+        android:textSize="20sp"
+        android:text="GOT IT"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/mybutton2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="It appears that you have the 'Allow this app to draw over other apps' option turned off. Please turn on this option in order for this app to work properly. You will be taking to the permission screen by the below 'GOT IT' button."
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+
+
+</android.support.percent.PercentRelativeLayout>

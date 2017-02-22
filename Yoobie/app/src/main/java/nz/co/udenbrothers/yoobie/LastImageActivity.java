@@ -23,21 +23,17 @@ public class LastImageActivity extends AppCompatActivity{
         SharedPreferences pref = getSharedPreferences("app", MODE_PRIVATE);
         GifImageView ima = (GifImageView) findViewById(R.id.imageLastView);
         String imgType = pref.getString("lastImgType", "no");
-        int imgNo= pref.getInt("lastImgNo", -1);
-        if(imgNo == -1){
-            ima.setImageResource(R.drawable.notaval);
-        }
-        else {
-
-            if(imgType.equals("jpg")){
-                ima.setImageDrawable(Drawable.createFromPath(getExternalFilesDir(null) + "/." + imgNo + ".jpg"));
+        String imgNo= pref.getString("lastImgNo", "N/A");
+        try{
+            if(imgType.equals("gif")){
+                ima.setImageDrawable(new GifDrawable(getExternalFilesDir(null) + "/" + imgNo + ".gif"));
             }
             else {
-                try{
-                    ima.setImageDrawable(new GifDrawable(getExternalFilesDir(null) + "/." + imgNo + ".gif"));
-                }
-                catch (Exception e){}
+                ima.setImageDrawable(Drawable.createFromPath(getExternalFilesDir(null) + "/" + imgNo + "." + imgType));
             }
+        }
+        catch (Exception e){
+            ima.setImageResource(R.drawable.notaval);
         }
     }
 }

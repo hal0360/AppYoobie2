@@ -1,6 +1,5 @@
 package nz.co.udenbrothers.yoobie;
 
-
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,10 +8,11 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -20,134 +20,132 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.annotation.NonNull;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import nz.co.udenbrothers.yoobie.models.Member;
+import nz.co.udenbrothers.yoobie.models.Country;
+import nz.co.udenbrothers.yoobie.models.Region;
+import nz.co.udenbrothers.yoobie.models.Token;
+import nz.co.udenbrothers.yoobie.tools.CountryAdaptor;
 import nz.co.udenbrothers.yoobie.tools.InternetService;
+import nz.co.udenbrothers.yoobie.tools.RegionAdaptor;
 import nz.co.udenbrothers.yoobie.tools.RequestTask;
 import nz.co.udenbrothers.yoobie.tools.UpdateReceiver;
 
 
-public class RegisterTwoFragment extends Fragment implements View.OnClickListener , AsynCallback{
+public class RegisterTwoFragment extends Fragment implements View.OnClickListener, AsynCallback{
 
     private SignupActivity mainAct;
     private Calendar myCalendar;
-    private String gender;
     private EditText ed;
     private EditText ed3;
     private EditText ed2;
-    private EditText ed7;
+    private EditText ed4;
     private RadioButton radMale;
     private RadioButton radFemale;
     private TextView dobTxt;
     private Spinner spinner;
+    private CountryAdaptor countryAdaptor;
+    private Spinner spinner2;
+    private RegionAdaptor regionAdaptor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_register_two, container, false);
-        gender = "male";
         mainAct.logoContain.setVisibility(View.INVISIBLE);
-
         dobTxt = (TextView) view.findViewById(R.id.editRegDob);
         dobTxt.setOnClickListener(this);
-
         spinner = (Spinner) view.findViewById(R.id.editRegCountry);
-        ArrayList<String> allcountry = new ArrayList<>();
-        allcountry.add("Select Country");
-        Locale[] locale = Locale.getAvailableLocales();
-        String countryy;
-        for( Locale loc : locale ){
-            countryy = loc.getDisplayCountry();
-            if( countryy.length() > 0 && !allcountry.contains(countryy) ){
-                allcountry.add( countryy );
-            }
-        }
-        Collections.sort(allcountry);
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(mainAct, android.R.layout.simple_spinner_item, allcountry){
-            @Override
-            public boolean isEnabled(int position){
-                if(position == 0) return false;
-                else return true;
-            }
-            @NonNull
-            @Override
-            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                View v = super.getView(position, convertView, parent);
-                TextView tiv = (TextView) v;
-                if(position == 0) tiv.setTextColor(Color.WHITE);
-                else tiv.setTextColor(Color.parseColor("#FFFF00"));
-                return v;
-            }
-            @Override
-            public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if(position == 0) tv.setTextColor(Color.GRAY);
-                else tv.setTextColor(Color.BLACK);
-                return view;
-            }
-        };
-
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
-
+        spinner2 = (Spinner) view.findViewById(R.id.editRegCity);
         ed = (EditText)view.findViewById(R.id.editRegFirst);
         ed2 = (EditText)view.findViewById(R.id.editRegMobile);
+        ed4 = (EditText)view.findViewById(R.id.editRegMobileCode);
         ed3 = (EditText)view.findViewById(R.id.editRegLast);
-        //ed6 = (EditText)view.findViewById(R.id.editRegCountry);
-        ed7 = (EditText)view.findViewById(R.id.editRegCity);
         radMale = (RadioButton)view.findViewById(R.id.radioMale);
         radFemale = (RadioButton)view.findViewById(R.id.radioFemale);
         Button finButt = (Button)view.findViewById(R.id.FinishButton);
-
         TextView tted = (TextView)view.findViewById(R.id.addEmailText);
         tted.setText(mainAct.pref.getString("email", "N/A"));
-
         radMale.setOnClickListener(this);
         radFemale.setOnClickListener(this);
         finButt.setOnClickListener(this);
         myCalendar = Calendar.getInstance();
         myCalendar.set(Calendar.YEAR, 1999);
-        myCalendar.set(Calendar.MONTH, 6);
-        myCalendar.set(Calendar.DAY_OF_MONTH, 6);
+        myCalendar.set(Calendar.MONTH, 9);
+        myCalendar.set(Calendar.DAY_OF_MONTH, 9);
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        countryAdaptor = new CountryAdaptor(mainAct, android.R.layout.simple_spinner_item, mainAct.countries);
+        countryAdaptor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(countryAdaptor);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                Country contry = countryAdaptor.getItem(position);
+                if (contry != null) {
+                    mainAct.newUsr.countryId = contry.id;
+                    ed4.setText(contry.callingCode);
+                    regionAdaptor = new RegionAdaptor(mainAct, android.R.layout.simple_spinner_item, contry.allRegion);
+                    regionAdaptor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner2.setAdapter(regionAdaptor);
+                    spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                            Region region = regionAdaptor.getItem(position);
+                            if (region != null) {
+                                mainAct.newUsr.countryRegionId = region.id;
+                            }
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapter) {  }
+                    });
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapter) {  }
+        });
+    }
+
     public void postCallback(String result){
+
         Gson gson = new Gson();
-        try {
-            Member myId = gson.fromJson(result, Member.class);
-            SharedPreferences settings;
-            SharedPreferences.Editor editor;
-            settings = mainAct.getSharedPreferences("app", Context.MODE_PRIVATE);
-            editor = settings.edit();
-            editor.putInt("id", myId.id);
-            editor.putString("name", myId.username);
-            editor.putString("email", myId.email);
-            editor.putString("dob", myId.date_of_birth);
-            editor.putString("location", myId.country + ", " + myId.city);
-            editor.putString("mobile", myId.mobile);
-            editor.putString("gender", myId.gender);
-            editor.putInt("active", 1);
-            editor.apply();
-            mainAct.startService(new Intent(mainAct, InternetService.class));
-            UpdateReceiver ta = new UpdateReceiver();
-            ta.starting(mainAct);
-            Intent mSerIntent = new Intent(mainAct, YoobieService.class);
-            mSerIntent.putExtra("active", 1);
-            mainAct.startService(mSerIntent);
-            startActivity(new Intent(mainAct, MainActivity.class));
-            mainAct.finish();
-        } catch (Exception e) {
-            Toast.makeText(mainAct,result, Toast.LENGTH_SHORT).show();
+        if(result.equals("false")){
+            ed2.requestFocus();
+            ed2.setError("Phone  already in use.");
+        }
+        else if(result.equals("true")){
+            new RequestTask(mainAct,this,"POST",gson.toJson(mainAct.newUsr),null).execute("http://yoobie-api.azurewebsites.net/registration");
+        }
+        else{
+            try {
+                Token myTok = gson.fromJson(result, Token.class);
+                SharedPreferences settings;
+                SharedPreferences.Editor editor;
+                settings = mainAct.getSharedPreferences("app", Context.MODE_PRIVATE);
+                editor = settings.edit();
+                editor.putString("authorization", Base64.encodeToString((myTok.userId + ":" + myTok.accessToken).getBytes("UTF-8"), Base64.NO_WRAP));
+                editor.putInt("active", 1);
+                editor.apply();
+                mainAct.startService(new Intent(mainAct, InternetService.class));
+                UpdateReceiver ta = new UpdateReceiver();
+                ta.starting(mainAct);
+                Intent mSerIntent = new Intent(mainAct, YoobieService.class);
+                mSerIntent.putExtra("active", 1);
+                mainAct.startService(mSerIntent);
+                startActivity(new Intent(mainAct, MainActivity.class));
+                mainAct.finish();
+            } catch (Exception e) {
+                Toast.makeText(mainAct,"Data error", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -161,28 +159,50 @@ public class RegisterTwoFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.FinishButton:
+
                 String usr = ed.getText().toString().trim();
+                String usr2 = ed3.getText().toString().trim();
                 String mob = ed2.getText().toString().trim();
                 String bir = dobTxt.getText().toString().trim();
-                String loc = spinner.getSelectedItem().toString();
-                String loc2 = ed7.getText().toString().trim();
 
-                if (usr.equals("") || mob.equals("") || bir.equals("Date Of Birth") || loc.equals("Select Country") || loc2.equals("")){
-                    Toast.makeText(mainAct, "Please fill out all fields", Toast.LENGTH_SHORT).show();
+                if (usr.equals("")){
+                    ed.requestFocus();
+                    ed.setError("Invaid first anme");
                     return;
                 }
 
-                Gson gson = new Gson();
-                Member me = new Member(0, usr, mainAct.pref.getString("password", "N/A"), mainAct.pref.getString("email", "N/A"), gender, bir, loc, loc2, Build.MANUFACTURER + " " + android.os.Build.MODEL, mob);
-                new RequestTask(mainAct,this,gson.toJson(me)).execute("http://103.18.58.26/Alpha/users/signin");
+                if (usr2.equals("")){
+                    ed3.requestFocus();
+                    ed3.setError("Invaid last anme");
+                    return;
+                }
+
+                Matcher matcher = Pattern.compile("^[0-9]{8,12}$").matcher(mob);
+                if (!matcher.matches( )) {
+                    ed2.requestFocus();
+                    ed2.setError("Invaid phone number");
+                    return;
+                }
+
+                if (bir.equals("Date Of Birth")){
+                    Toast.makeText(mainAct, "Please select a birth date", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                mainAct.newUsr.firstName = usr;
+                mainAct.newUsr.lastName = usr2;
+                mainAct.newUsr.phoneMobile = mob;
+                mainAct.newUsr.dateOfBirth = bir;
+                mainAct.newUsr.deviceModel = Build.MANUFACTURER + " " + android.os.Build.MODEL;
+                new RequestTask(mainAct,this,"GET",null,null).execute("http://yoobie-api.azurewebsites.net/registration/phone-mobile-available?phone=" + mob);
                 break;
             case R.id.radioMale:
                 radFemale.setChecked(false);
-                gender = "male";
+                mainAct.newUsr.gender = 1;
                 break;
             case R.id.radioFemale:
                 radMale.setChecked(false);
-                gender = "female";
+                mainAct.newUsr.gender = 2;
                 break;
             case R.id.editRegDob:
                 DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {

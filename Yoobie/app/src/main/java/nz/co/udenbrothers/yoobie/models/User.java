@@ -5,23 +5,31 @@ package nz.co.udenbrothers.yoobie.models;
  */
 public class User {
 
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-    private String dateOfBirth;
-    private int gender;
-    private String deviceToken;
-    private String phoneMobile;
+    public String firstName;
+    public String lastName;
+    public String email;
+    public String password;
+    public String dateOfBirth;
+    public int gender;
+    public int countryId;
+    public int countryRegionId;
+    public String deviceToken;
+    public String phoneMobile;
+    public String deviceModel;
+    public String phoneOther;
 
     public User(){
-        firstName = "Xie2";
-        lastName = "Dong2";
-        password = "helloworld222";
-        email = "dummy2@gmail.com";
+        firstName = "N/A";
+        lastName = "N/A";
+        password = "N/A";
+        email = "N/A";
         gender = 1;
-        dateOfBirth = "1960-11-11";
-        deviceToken = "sffgshfuishfushfusdf";
-        phoneMobile = "+64271114567";
+        dateOfBirth = "N/A";
+        deviceToken = "N/A";
+        phoneMobile = "N/A";
+        phoneOther = "00000000";
+        countryId = 1;
+        countryRegionId = 1;
+        deviceModel = "N/A";
     }
 }

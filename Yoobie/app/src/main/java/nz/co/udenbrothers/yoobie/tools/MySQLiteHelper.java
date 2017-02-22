@@ -16,7 +16,7 @@ import nz.co.udenbrothers.yoobie.models.Image_stamp;
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
     private static MySQLiteHelper sInstance;
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "ImageDB";
 
     public static synchronized MySQLiteHelper getInstance(Context context) {
@@ -31,7 +31,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_BOOK_TABLE = "CREATE TABLE images ( " +
-                "image_id INTEGER, " +
+                "image_id TEXT, " +
                 "image_name TEXT, "+
                 "renewed_times INTEGER, " +
                 "type TEXT )";
@@ -51,7 +51,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
-    public synchronized void addStamp(int img_id, String stp){
+    public synchronized void addStamp(String img_id, String stp){
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
             values.put("image_id", img_id);
@@ -66,7 +66,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
-                Image_stamp tempStamp = new Image_stamp(cursor.getInt(0), cursor.getString(1));
+                Image_stamp tempStamp = new Image_stamp(cursor.getString(0), cursor.getString(1));
                 list.add(tempStamp);
             } while (cursor.moveToNext());
         }
@@ -101,7 +101,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             Random rand = new Random();
             int rann = rand.nextInt(c.getCount());
             c.moveToPosition(rann);
-            res = new Image(c.getInt(0), c.getString(1), c.getInt(2), c.getString(3));
+            res = new Image(c.getString(0), c.getString(1), c.getInt(2), c.getString(3));
         }
         c.close();
         db.close();
